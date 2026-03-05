@@ -54,3 +54,18 @@ class Library:
             print(f"Success: You borrowed {book.title} by {book.author}.")
         else:
             print(f"Error: {book.title} by {book.author} is already borrowed or doesn't exist.")
+    
+    # Return a book (mark as available)
+    def return_book(self, book):
+        self.cur.execute("""
+            UPDATE books 
+            SET is_available = 1 
+            WHERE title=? AND author=? AND is_available = 0
+        """, (book.title, book.author))
+        
+        if self.cur.rowcount > 0:
+            self.conn.commit()
+            book.is_available = True
+            print(f"Success: {book.title} has been returned.")
+        else:
+            print(f"Error: {book.title} by {book.author} was not borrowed or does not exist.")

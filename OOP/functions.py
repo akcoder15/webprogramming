@@ -39,3 +39,18 @@ class Library:
             self.conn.commit()
         except sqlite3.IntegrityError:
             print(f"{book.title} by {book.author} is already added")
+    
+    # Borrow a book (mark as unavailable)
+    def borrow_book(self, book):
+        self.cur.execute("""
+            UPDATE books 
+            SET is_available = 0 
+            WHERE title=? AND author=? AND is_available = 1
+        """, (book.title, book.author))
+        
+        if self.cur.rowcount > 0:
+            self.conn.commit()
+            book.is_available = 0
+            print(f"Success: You borrowed {book.title} by {book.author}.")
+        else:
+            print(f"Error: {book.title} by {book.author} is already borrowed or doesn't exist.")

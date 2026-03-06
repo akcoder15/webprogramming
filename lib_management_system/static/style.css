@@ -1,0 +1,79 @@
+/* Custom styles for Library Management System */
+
+/* General body styling */
+body {
+    background-color: #f8f9fa; /* Light gray background */
+}
+
+/* Navbar brand styling */
+.navbar-brand {
+    font-weight: bold;
+}
+
+/* Card styling for better visual appeal */
+.card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Subtle shadow */
+    border: 1px solid rgba(0, 0, 0, 0.125); /* Light border */
+}
+
+/* Card title color */
+.card-title {
+    color: #495057; /* Dark gray text */
+}
+
+/* Primary button styling */
+.btn-primary {
+    background-color: #007bff; /* Bootstrap primary blue */
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    border-color: #004085;
+}
+
+/* Success button styling */
+.btn-success {
+    background-color: #28a745; /* Bootstrap success green */
+    border-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #1e7e34; /* Darker green on hover */
+    border-color: #1c7430;
+}
+
+/* Warning button styling */
+.btn-warning {
+    background-color: #ffc107; /* Bootstrap warning yellow */
+    border-color: #ffc107;
+    color: #212529; /* Dark text for contrast */
+}
+
+.btn-warning:hover {
+    background-color: #e0a800; /* Darker yellow on hover */
+    border-color: #d39e00;
+}
+
+/* Secondary button styling */
+.btn-secondary {
+    background-color: #6c757d; /* Bootstrap secondary gray */
+    border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #545b62; /* Darker gray on hover */
+    border-color: #4e555b;
+}
+
+/* Responsive adjustments for mobile devices */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px; /* Reduce padding on small screens */
+    }
+
+    .card-body {
+        padding: 1rem; /* Adjust card padding */
+    }
+}

@@ -1,0 +1,97 @@
+<!-- Homepage template for displaying available books and forms -->
+{% extends 'layout.html' %}
+
+{% block title %}Library - Home{% endblock %}
+
+{% block body %}
+<!-- Display flashed messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<!-- Main content row with two columns -->
+<div class="row">
+    <!-- Left column: Available books display -->
+    <div class="col-md-8">
+        <h1 class="mb-4">Available Books</h1>
+        {% if books %}
+        <!-- Grid of book cards -->
+        <div class="row">
+            {% for book in books %}
+            <div class="col-md-6 col-lg-4 mb-3">
+                <!-- Individual book card -->
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column">
+                        <!-- Book title -->
+                        <h5 class="card-title">{{ book[0] }}</h5>
+                        <!-- Book author -->
+                        <p class="card-text">by {{ book[1] }}</p>
+                        <!-- Borrow form -->
+                        <form method="post" class="mt-auto">
+                            <input type="hidden" name="title" value="{{ book[0] }}">
+                            <input type="hidden" name="author" value="{{ book[1] }}">
+                            <input type="hidden" name="action" value="borrow">
+                            <button type="submit" class="btn btn-primary">Borrow</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <!-- Message when no books are available -->
+        <p class="alert alert-info">No books available.</p>
+        {% endif %}
+    </div>
+    <!-- Right column: Forms for adding and returning books -->
+    <div class="col-md-4">
+        <!-- Add book card -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Add a New Book</h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="add-title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="add-title" name="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="add-author" class="form-label">Author</label>
+                        <input type="text" class="form-control" id="add-author" name="author" required>
+                    </div>
+                    <input type="hidden" name="action" value="add">
+                    <button type="submit" class="btn btn-success">Add Book</button>
+                </form>
+            </div>
+        </div>
+        <!-- Return book card -->
+        <div class="card">
+            <div class="card-header">
+                <h5>Return a Book</h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="return-title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="return-title" name="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="return-author" class="form-label">Author</label>
+                        <input type="text" class="form-control" id="return-author" name="author" required>
+                    </div>
+                    <input type="hidden" name="action" value="return">
+                    <button type="submit" class="btn btn-warning">Return Book</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -30,7 +30,7 @@ def index():
     if request.method == "POST":
         # Get form data
         action = request.form.get('action')
-        title = request.form.get('title').lower()  # Convert to uppercase for consistency
+        title = request.form.get('title').lower()  # Convert to lowercase for consistency
         author = request.form.get('author').lower()
 
         if action == 'add':
